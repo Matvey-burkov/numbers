@@ -17,11 +17,11 @@ int romanToInt(const std::string& roman)
     int total = 0;
     int prevValue = 0;
 
-    for (int i = roman.length() - 1; i >= 0; i--) {
-        int currentValue = romanMap[roman[i]];
+    for (int i = roman.length() - 1; i >= 0; i--) { 
+        int currentValue = romanMap[roman[i]]; // в квадратных по инексу получаем символ по символу в качестве ключа передаём его в наш map и получаем значение
 
-        if (currentValue < prevValue) {
-            total -= currentValue;
+        if (currentValue < prevValue) { // 
+            total -= currentValue; // простое вычитание 
         } else {
             total += currentValue;
         }
@@ -38,7 +38,7 @@ int main()
     std::cout << "Enter a Roman numeral: ";
     std::cin >> romanNumeral;
 
-    int intValue = romanToInt(romanNumeral);
+    int intValue = romanToInt(romanNumeral);// в () романтуин передаем аргумент романнумерал, ПОТОМ ПЕРЕДАЕМ В ТОТАЛ И НУМЕРАЛ ПРЕАЕМ В ТОТАЛ 
 
     std::cout << "The integer value of " << romanNumeral << " is: " << intValue << std::endl;
 
