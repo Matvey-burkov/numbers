@@ -1,51 +1,46 @@
-#include <map>
 #include <iostream>
+#include <map>
+#include <string>
 
-
-
-int main() 
+int romanToInt(const std::string& roman)
 {
- std::map< int, std::string>numbers
-  = {
-   {1, "I" },
-   {4, "IV" },
-   {5, "V" },
-   {9, "IX" },
-   {10, "X" },
-   {40, "XL" },
-   {50, "L" },
-   {90, "XC" },
-   {100, "C" },
-   {400, "CD" },
-   {500, "D" },
-   {900, "CM" },
-   {1000, "M"},
- };
+    std::map<char, int> romanMap = {
+        {'I', 1},
+        {'V', 5},
+        {'X', 10},
+        {'L', 50},
+        {'C', 100},
+        {'D', 500},
+        {'M', 1000}
+    };
 
- std::map<int, std::string>::iterator it;
+    int total = 0;
+    int prevValue = 0;
 
- int ch;
+    for (int i = roman.length() - 1; i >= 0; i--) {
+        int currentValue = romanMap[roman[i]];
 
- std::cout << "Enter your number: ";
- std::cin >> ch;
+        if (currentValue < prevValue) {
+            total -= currentValue;
+        } else {
+            total += currentValue;
+        }
 
- size_t i = 12;
+        prevValue = currentValue;
+    }
 
- for (it = numbers.begin(); i > 0; it++, i--) {}
- 
- for (; ch != 0;)
- {
-  if(ch<it->first)
-  { 
-   --it;
-  }
-  else
-  {
-   std::cout << numbers[it->first];
-   ch -= it->first;
-  }
-  
- }
+    return total;
+}
 
- return 0;
+int main()
+{
+    std::string romanNumeral;
+    std::cout << "Enter a Roman numeral: ";
+    std::cin >> romanNumeral;
+
+    int intValue = romanToInt(romanNumeral);
+
+    std::cout << "The integer value of " << romanNumeral << " is: " << intValue << std::endl;
+
+    return 0;
 }
